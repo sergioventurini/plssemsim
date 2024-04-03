@@ -1,0 +1,3 @@
+v 0.1.0
+d 'PLSSEMSIM': module to simulate data from a given partial least squares structural equation model (PLS-SEM).
+p plssemsim
