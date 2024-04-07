@@ -1,5 +1,5 @@
 {smcl}
-{* *! version 0.5.0  05Apr2024}{...}
+{* *! version 0.1.0  07Apr2024}{...}
 {vieweralsosee "plssem" "help plssem"}{...}
 {viewerjumpto "Syntax" "plssemsim##syntax"}{...}
 {viewerjumpto "Description" "plssemsim##description"}{...}
@@ -21,7 +21,7 @@
 Simulation of data in accordance with a given partial least squares structural equation model
 
 {p 8 10 2}
-{cmd:plssemsimsim} (LV1 > indblock1) (LV2 > indblock2) (...)
+{cmd:plssemsim} (LV1 > indblock1) (LV2 > indblock2) (...)
 [{cmd:,} structural(LV1 = structeq1, LV2 = structeq2, ...) {it:{help plssemsim##plssemsimopts:options}}]
 
 
