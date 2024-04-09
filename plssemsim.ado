@@ -609,9 +609,9 @@ program Simulate, eclass
   }
   if (`rc' >= 1) {
     /* Clean up */
-    foreach var in `allindicators' {
-      capture quietly drop `var'
-    }
+//    foreach var in `allindicators' {
+//      capture quietly drop `var'
+//    }
     if ("`cleanup'" == "") {
       capture mata: plssemsim_cleanup(st_local("tempnamelist"))
     }
