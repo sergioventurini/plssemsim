@@ -51,7 +51,8 @@ program Simulate, eclass
     COpula(string) COPMargins(namelist) COPMARGParams(name) ///
     COPParams(name) DISPstr(string) nw(numlist integer >1 min=1 max=1) ///
     hnd(string) n(numlist integer >1 min=1 max=1) METhod(string) ///
-    noHEADer noMEAStable noSTRUCTtable noCORR DIGits(integer 3) noCLeanup ]
+    noHEADer noMEAStable noSTRUCTtable noCORR DIGits(integer 3) clear ///
+    noCLeanup ]
  
   /* Options:
      --------
@@ -92,6 +93,7 @@ program Simulate, eclass
      nocorr                           --> do not show any correlation matrix
      digits(integer 3)                --> number of digits to display
                                           (default 3)
+     clear                            --> clear the current data set
      nocleanup                        --> Mata temporary objects are not
                                           removed (undocumented)
    */
