@@ -581,25 +581,6 @@ program Simulate, eclass
       st_local("dispstr"), ///
       st_local("method"))
 
-    if (_N > 0) {
-      display as error "some data already present; " _continue
-      display as error "close the active data set before simulating new data"
-      error 197
-    }
-    else {
-      mata: st_addobs(`n')
-      quietly mata: st_addvar("double", tokens(`indicators'), 1)
-      mata: st_store(., ., `data')
-    }
-
-    /* Label the indicators */
-    local now "`c(current_date)', `c(current_time)'"
-    local now : list clean now
-    foreach var of varlist `allindicators' {
-      label variable `var' "Simulated values of `var' [`now']"
-    }
-    /* End of labeling the indicators */
-
   } // end of -capture-
   local rc = _rc
   if (`rc' == 1) {
@@ -619,6 +600,25 @@ program Simulate, eclass
    
     error `rc'
   }
+
+  if (_N > 0) {
+    display as error "some data already present; " _continue
+    display as error "close the active data set before simulating new data"
+    error 197
+  }
+  else {
+    mata: st_addobs(`n')
+    quietly mata: st_addvar("double", tokens(`indicators'), 1)
+    mata: st_store(., ., `data')
+  }
+
+  /* Label the indicators */
+  local now "`c(current_date)', `c(current_time)'"
+  local now : list clean now
+  foreach var of varlist `allindicators' {
+    label variable `var' "Simulated values of `var' [`now']"
+  }
+  /* End of labeling the indicators */
 
   /* Return values */
   local props ""
