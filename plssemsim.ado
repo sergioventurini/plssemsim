@@ -216,13 +216,13 @@ program Simulate, eclass
   local alllatents : list uniq alllatents
   /* End of parsing outer relationships */
  
-  /* Save original data set */
-  if (_N > 0) {
-    tempname original_data
-    local tempnamelist "`tempnamelist' `original_data'"
-    mata: `original_data' = st_data(., .)
-  }
-  /* End saving original data set */
+//   /* Save original data set */
+//   if (_N > 0) {
+//     tempname original_data
+//     local tempnamelist "`tempnamelist' `original_data'"
+//     mata: `original_data' = st_data(., .)
+//   }
+//   /* End saving original data set */
  
   /* Check that digits is nonnegative */
   if (`digits' < 0) {
@@ -574,6 +574,10 @@ program Simulate, eclass
       strtoreal(st_local("nw")), ///
       st_local("dispstr"), ///
       st_local("method"))
+
+    if ("`clear'" != "") {
+      quietly clear
+    }
 
     if (_N > 0) {
       display as error "some data already present; " _continue

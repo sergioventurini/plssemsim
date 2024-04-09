@@ -1,5 +1,5 @@
 {smcl}
-{* *! version 0.1.0  07Apr2024}{...}
+{* *! version 0.1.1  10Apr2024}{...}
 {vieweralsosee "plssem" "help plssem"}{...}
 {viewerjumpto "Syntax" "plssemsim##syntax"}{...}
 {viewerjumpto "Description" "plssemsim##description"}{...}
@@ -65,6 +65,7 @@ the empirical or the population mean and covariance matrix; to use with {cmd:met
 {synopt:{cmd:no}{cmdab:meas:table}}suppress display of measurement model estimates table{p_end}
 {synopt:{cmd:no}{cmdab:struct:table}}suppress display of structural model estimates table{p_end}
 {synopt:{cmd:no}{cmdab:corr}}suppress display of correlation matrices{p_end}
+{synopt:{cmd:clear}}specifies that it is okay to replace the data in memory, even though the current data have not been saved to disk{p_end}
 {synoptline}
 
 {p 4 4 2}
@@ -116,7 +117,7 @@ data using copulas (see {help plssemsim##Mairetal2012:Mair et al. 2012}).
 {phang3}{cmd: (eta2 > 0.7:y21 + 0.7:y22 + 0.9:y23) ///}{p_end}
 {phang3}{cmd: (eta3 > 0.9:y31 + 0.8:y32 + 0.7:y33), ///}{p_end}
 {phang3}{cmd: structural(eta3 = 0.4:eta1 + 0.35:eta2, eta2 = 0.2:eta1) ///}{p_end}
-{phang3}{cmd: indicator_cor(ic) n(1e4) method(normal)}{p_end}
+{phang3}{cmd: indicator_cor(ic) n(1e4) method(normal) clear}{p_end}
 
     {hline}
 {pstd}Setup{p_end}
@@ -131,7 +132,7 @@ data using copulas (see {help plssemsim##Mairetal2012:Mair et al. 2012}).
 {phang3}{cmd: (eta3 > 0.9:y31 + 0.8:y32 + 0.7:y33), ///}{p_end}
 {phang3}{cmd: structural(eta3 = 0.4:eta1 + 0.35:eta2, eta2 = 0.2:eta1) ///}{p_end}
 {phang3}{cmd: indicator_cor(ic) n(1e4) method(vm) empirical ///}{p_end}
-{phang3}{cmd: skewness(skew) kurtosis(kurt)}{p_end}
+{phang3}{cmd: skewness(skew) kurtosis(kurt) clear}{p_end}
 
     {hline}
 {pstd}Setup{p_end}
@@ -150,7 +151,7 @@ data using copulas (see {help plssemsim##Mairetal2012:Mair et al. 2012}).
 {phang3}{cmd: structural(eta3 = 0.4:eta1 + 0.35:eta2, eta2 = 0.2:eta1) ///}{p_end}
 {phang3}{cmd: indicator_cor(ic) n(1e4) method(copula) ///}{p_end}
 {phang3}{cmd: copula(t) copmargins(`margins') copmargparams(prmMarg) ///}{p_end}
-{phang3}{cmd: copparams(param) nw(1e4) dispstr(ex)}{p_end}
+{phang3}{cmd: copparams(param) nw(1e4) dispstr(ex) clear}{p_end}
 
     {hline}
 
