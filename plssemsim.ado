@@ -529,6 +529,10 @@ program Simulate, eclass
   mata: `reflective' = st_local("modeA")
   mata: `indicators' = st_local("allindicators")
 
+  if ("`clear'" != "") {
+    quietly clear
+  }
+
   capture noisily {
     mata: `Sigma' = plssemsim_generateSigma( ///
       st_matrix("`adj_meas'")', ///      // warning: tranposed!
@@ -576,10 +580,6 @@ program Simulate, eclass
       strtoreal(st_local("nw")), ///
       st_local("dispstr"), ///
       st_local("method"))
-
-    if ("`clear'" != "") {
-      quietly clear
-    }
 
     if (_N > 0) {
       display as error "some data already present; " _continue
