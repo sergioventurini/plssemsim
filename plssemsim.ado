@@ -1,5 +1,5 @@
-*!plssemsim version 0.1.0
-*!Written 05Apr2024
+*!plssemsim version 0.1.1
+*!Written 10Apr2024
 *!Written by Sergio Venturini
 *!The following code is distributed under GNU General Public License version 3 (GPL-3)
 
@@ -607,7 +607,7 @@ program Simulate, eclass
       capture quietly drop `var'
     }
     if ("`cleanup'" == "") {
-      capture mata: cleanup(st_local("tempnamelist"))
+      capture mata: plssemsim_cleanup(st_local("tempnamelist"))
     }
     /* End of cleaning up */
    
@@ -718,7 +718,7 @@ program Simulate, eclass
  
   /* Clean up */
   if ("`cleanup'" == "") {
-    capture mata: cleanup(st_local("tempnamelist"))
+    capture mata: plssemsim_cleanup(st_local("tempnamelist"))
   }
   /* End of cleaning up */
 end

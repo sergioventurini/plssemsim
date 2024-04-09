@@ -1,5 +1,5 @@
 # plssemsim
-###### Current release: 0.1.0
+###### Current release: 0.1.1
 ###### Stata version required: at least 15.1
 Stata package for simulating data in accordance with a given Partial Least Squares Structural Equation Model (PLS-SEM). The package has been developed in line with the `cSEM.DGP` `R` package (https://m-e-rademaker.github.io/cSEM.DGP), while it adds the simulation of data using copulas.
 
