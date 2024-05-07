@@ -1,5 +1,5 @@
 {smcl}
-{* *! version 0.1.1  10Apr2024}{...}
+{* *! version 0.1.1  07May2024}{...}
 {vieweralsosee "plssem" "help plssem"}{...}
 {viewerjumpto "Syntax" "plssemsim##syntax"}{...}
 {viewerjumpto "Description" "plssemsim##description"}{...}
@@ -91,7 +91,7 @@ and then the exogenous latent variable/s, e.g., {cmd:structural(LV1 = structeq1)
 than one structural relationship following the same approach. Say that we have two further latent variables
 in the model, {cmd:LV2} and {cmd:LV3}; then, in the structural part of the syntax we would type in
 {cmd:structural(LV2 = b21:LV1, LV3 = b31:LV1 + b32:LV2)} indicating that {cmd:LV3} is another endogenous
-LV predicted by {cmd:LV1} and {cmd:LV1}. All the path coefficients, in the example {cmd: b21}, {cmd: b31}
+LV predicted by {cmd:LV1} and {cmd:LV2}. All the path coefficients, in the example {cmd: b21}, {cmd: b31}
 and {cmd: b32}, must be specified as real numbers. 
 
 
