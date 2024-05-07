@@ -1,5 +1,5 @@
 *!plssemsim version 0.1.1
-*!Written 10Apr2024
+*!Written 07May2024
 *!Written by Sergio Venturini
 *!The following code is distributed under GNU General Public License version 3 (GPL-3)
 
@@ -339,6 +339,14 @@ program Simulate, eclass
           }
           mata: `im' = strtoreal(st_local("i"))
           mata: `jm' = strtoreal(st_local("j"))
+          if (`i' <= 0 | `i' > `num_lv') {
+            display as error "latent variables in inner and outer models do not match"
+            exit
+          }
+          if (`j' <= 0 | `j' > `num_lv') {
+            display as error "latent variables in inner and outer models do not match"
+            exit
+          }
           mata: `pathcoef'[`im', `jm'] = strtoreal(st_local("pc_tmp"))
         }
         else {
