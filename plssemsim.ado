@@ -1,4 +1,4 @@
-*!plssemsim version 0.1.1
+*!plssemsim version 0.1.2
 *!Written 07May2024
 *!Written by Sergio Venturini
 *!The following code is distributed under GNU General Public License version 3 (GPL-3)
@@ -288,20 +288,20 @@ program Simulate, eclass
   if ("`hnd'" == "") {
     local hnd "stop"
   }
-	if !("`hnd'" == "stop" | "`hnd'" == "drop" | "`hnd'" == "missing") {
-		display as error "hnd can be either 'stop', 'drop', or 'missing'"
-		exit
-	}
+  if !("`hnd'" == "stop" | "`hnd'" == "drop" | "`hnd'" == "missing") {
+    display as error "hnd can be either 'stop', 'drop', or 'missing'"
+    exit
+  }
   /* End of checking the handling of negative definite matrices */
  
   /* Check the method */
   if ("`method'" == "") {
     local method "normal"
   }
-	if !("`method'" == "normal" | "`method'" == "vm" | "`method'" == "copula") {
-		display as error "method can be either 'normal', 'vm', or 'copula'"
-		exit
-	}
+  if !("`method'" == "normal" | "`method'" == "vm" | "`method'" == "copula") {
+    display as error "method can be either 'normal', 'vm', or 'copula'"
+    exit
+  }
   /* End of checking the method */
  
   /* Check the empirical option */
@@ -598,9 +598,9 @@ program Simulate, eclass
   }
   if (`rc' >= 1) {
     /* Clean up */
-//    foreach var in `allindicators' {
-//      capture quietly drop `var'
-//    }
+//     foreach var in `allindicators' {
+//       capture quietly drop `var'
+//     }
     if ("`cleanup'" == "") {
       capture mata: plssemsim_cleanup(st_local("tempnamelist"))
     }
@@ -850,7 +850,7 @@ program Display
   }
 
   if ("`meastable'" == "") {
-    tempname loadings
+    tempname loadings loadings_tmp
     matrix `loadings' = e(loadings)
     local num_lv = colsof(`loadings')
     local allformative = e(formative)
@@ -858,18 +858,24 @@ program Display
     local num_lv_A = `num_lv' - `num_lv_B'
     local num_ind = rowsof(`loadings')
     local title_meas "Measurement model - Standardized loadings"
-    mktable, matrix(`loadings') digits(`digits') firstcolname("") ///
+    mata: st_matrix("`loadings_tmp'", editvalue(st_matrix("`loadings'"), 0, .))
+    matrix rownames `loadings_tmp' = `e(mvs)'
+    matrix colnames `loadings_tmp' = `e(lvs)'
+    mktable, matrix(`loadings_tmp') digits(`digits') firstcolname("") ///
       title(`title_meas') firstcolwidth(14) colwidth(14) ///
       hlines(`num_ind') novlines
   }
 
   if ("`structural'" != "nostructural") {
     if ("`structtable'" == "") {
-      tempname pathcoef
+      tempname pathcoef pathcoef_tmp
       matrix `pathcoef' = e(pathcoef)
       local hline_path = rowsof(`pathcoef')
       local title_st "Structural model - Standardized path coefficients"
-      mktable, matrix(`pathcoef') digits(`digits') firstcolname("Variable") ///
+      mata: st_matrix("`pathcoef_tmp'", editvalue(st_matrix("`pathcoef'"), 0, .))
+      matrix rownames `pathcoef_tmp' = `e(lvs)'
+      matrix colnames `pathcoef_tmp' = `e(lvs)'
+      mktable, matrix(`pathcoef_tmp') digits(`digits') firstcolname("Variable") ///
         title(`title_st') firstcolwidth(14) colwidth(14) ///
         hlines(`hline_path') novlines path
     }
